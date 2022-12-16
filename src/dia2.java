@@ -12,7 +12,11 @@ import java.util.ArrayList;
 * puntos de victoria:
 *   0 derrota   3 empate    6 victoria
 *
+*Correccion
 *
+* x: debo perder
+* y: debo empatar
+* z: debo ganar
 *
 * */
 
@@ -35,48 +39,7 @@ public class dia2 {
                     if (cadena.isEmpty()){
                         //suma=0;
                     }else{
-
-                        cadena = cadena.toLowerCase();
-                        String[] opciones=cadena.split(" ");
-
-                        if (opciones[1].equals("x")){
-                            suma+=1;
-                            if (opciones[0].equals("a")){
-                                suma+=3;
-                            }
-                            if (opciones[0].equals("b")){
-                                suma+=0;
-                            }
-                            if (opciones[0].equals("c")){
-                                suma+=6;
-                            }
-                        }
-                        if (opciones[1].equals("y")){
-                            suma+=2;
-                            if (opciones[0].equals("a")){
-                                suma+=6;
-                            }
-                            if (opciones[0].equals("b")){
-                                suma+=3;
-                            }
-                            if (opciones[0].equals("c")){
-                                suma+=0;
-                            }
-                        }
-                        if (opciones[1].equals("z")){
-                            suma+=3;
-                            if (opciones[0].equals("a")){
-                                suma+=0;
-                            }
-                            if (opciones[0].equals("b")){
-                                suma+=6;
-                            }
-                            if (opciones[0].equals("c")){
-                                suma+=3;
-                            }
-                        }
-
-
+                        suma+= calcularRonda2(cadena);
                     }
 
                 }
@@ -90,5 +53,100 @@ public class dia2 {
             System.out.println("Ocurrio un Error,cierre el archivo si lo tiene abierto");
         }
     }
+    public int calcularRonda(String cadena){
+        int suma=0;
+        cadena = cadena.toLowerCase();
+        String[] opciones=cadena.split(" ");
 
+        if (opciones[1].equals("x")){
+            suma+=1;
+            if (opciones[0].equals("a")){
+                suma+=3;
+            }
+            if (opciones[0].equals("b")){
+                suma+=0;
+            }
+            if (opciones[0].equals("c")){
+                suma+=6;
+            }
+        }
+        if (opciones[1].equals("y")){
+            suma+=2;
+            if (opciones[0].equals("a")){
+                suma+=6;
+            }
+            if (opciones[0].equals("b")){
+                suma+=3;
+            }
+            if (opciones[0].equals("c")){
+                suma+=0;
+            }
+        }
+        if (opciones[1].equals("z")){
+            suma+=3;
+            if (opciones[0].equals("a")){
+                suma+=0;
+            }
+            if (opciones[0].equals("b")){
+                suma+=6;
+            }
+            if (opciones[0].equals("c")){
+                suma+=3;
+            }
+        }
+        return suma;
+
+    }
+    public int calcularRonda2(String cadena){
+        int suma=0;
+        cadena = cadena.toLowerCase();
+        String[] opciones=cadena.split(" ");
+
+        if (opciones[1].equals("x")){
+            suma+=0;
+            if (opciones[0].equals("a")){
+                //perder contra piedra -> tijera
+                suma+=3;
+            }
+            if (opciones[0].equals("b")){
+                //perder contra papel -> piedra
+                suma+=1;
+            }
+            if (opciones[0].equals("c")){
+                //perer contra tijera -> papel
+                suma+=2;
+            }
+        }
+        if (opciones[1].equals("y")){
+            suma+=3;
+            if (opciones[0].equals("a")){
+                //empatar contra piedra ->
+                suma+=1;
+            }
+            if (opciones[0].equals("b")){
+                //para empatar contra papel dbes lanzar papel
+                suma+=2;
+            }
+            if (opciones[0].equals("c")){
+                //para empatar tijeras debes tener tijeras
+                suma+=3;
+            }
+        }
+        if (opciones[1].equals("z")){
+            suma+=6;
+            if (opciones[0].equals("a")){
+                //para ganar contra piedra debes tener papel
+                suma+=2;
+            }
+            if (opciones[0].equals("b")){
+                //para ganar con papel debes tener tijeras
+                suma+=3;
+            }
+            if (opciones[0].equals("c")){
+                //para ganarle a tijera debes tener piedra
+                suma+=1;
+            }
+        }
+        return suma;
+    }
 }
