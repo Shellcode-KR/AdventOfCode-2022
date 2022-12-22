@@ -29,6 +29,7 @@ public class dia5 {
                 String cadena;
                 int suma=0;
                 int indiceCaracter=1;
+                Deque<String> aux = new ArrayDeque<String>();
 
                 while ((cadena=lector.readLine()) !=null){
                     if (cadena.isEmpty()){
@@ -54,11 +55,16 @@ public class dia5 {
 
                             for (int i = 0; i < cuantos; i++) {
                                 if (!pilas.get(origen).isEmpty()){
-                                    String aux = pilas.get(origen).pop();
-                                    pilas.get(destino).push(aux);
+                                    aux.push(pilas.get(origen).pop());
+
                                 }else{
                                     break;
                                 }
+
+                            }
+                            for (int i = 0; i < cuantos; i++) {
+                                String auxiliar = aux.pop();
+                                pilas.get(destino).push(auxiliar);
 
                             }
                         }
